@@ -250,13 +250,15 @@ export default {
     },
     loginSuccess (res) {
       console.log(res)
-      this.$router.push({ name: 'dashboard' }, () => {
+      this.$router.push({ name: 'dashboard' })
+      this.isLoginError = false
+      // 延迟 1 秒显示欢迎信息
+      setTimeout(() => {
         this.$notification.success({
           message: '欢迎',
           description: `${timeFix()}，欢迎回来`
         })
-      })
-      this.isLoginError = false
+      }, 1000)
     },
     requestFailed (err) {
       this.isLoginError = true
